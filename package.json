@@ -1,0 +1,23 @@
+{
+  "name": "GUtils",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "dis:pro": "webpack --config build/webpack.config.js",
+    "dis:dev": "webpack --config build/webpack.dev.config.js"
+  },
+  "keywords": [],
+  "author": "'zhaozhong' <'zhaozhong936@gmail.com'>",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "7.3.4",
+    "@babel/preset-env": "7.3.4",
+    "babel-loader": "8.0.5",
+    "webpack": "4.29.6",
+    "webpack-cli": "3.2.3"
+  }
+}
