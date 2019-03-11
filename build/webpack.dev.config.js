@@ -29,6 +29,11 @@ module.exports = {
         }
       }
     ]
+  },
+  devServer: {
+    publicPath: "/",
+    port: 8080,
+    open: true,
+    openPage: 'examples/'
   }
-
 };
