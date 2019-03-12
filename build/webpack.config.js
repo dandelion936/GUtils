@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  mode: 'production',
   entry: './js/index.js',
   output: {
     filename: 'Gutils.min.js',

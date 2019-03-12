@@ -32,7 +32,8 @@ module.exports = {
     ]
   },
   devServer: {
-    port: 8080,
+    publicPath: "/",
+    port: 8086,
     open: true,
     hot: true,
     inline: true,

@@ -7,19 +7,25 @@
     "example": "examples"
   },
   "scripts": {
-    "dev": "tsc -p tsconfig.json --watch && webpack-dev-server --inline --hot --config build/webpack.dev.config.js",
-    "dis:pro": "tsc -p tsconfig.json && webpack --config build/webpack.config.js",
-    "dis:dev": "tsc -p tsconfig.json && webpack --config build/webpack.dev.config.js",
-    "dis": "npm run dis:dev && npm run dis:pro"
+    "start": "concurrently \"tsc -p tsconfig.json --watch\" \"webpack-dev-server --inline --hot --config build/webpack.dev.config.js\"",
+    "build": "tsc -p tsconfig.json && webpack --config build/webpack.config.js"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dandelion936/GUtils.git"
+  },
+  "keywords": [
+    "GUtils"
+  ],
   "author": "'zhaozhong' <'zhaozhong936@gmail.com'>",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "7.3.4",
     "@babel/preset-env": "7.3.4",
     "babel-loader": "8.0.5",
+    "concurrently": "4.1.0",
     "html-webpack-plugin": "^3.2.0",
+    "typescript": "3.3.3333",
     "webpack": "4.29.6",
     "webpack-cli": "3.2.3",
     "webpack-dev-server": "^3.2.1"
