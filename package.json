@@ -7,9 +7,9 @@
     "example": "examples"
   },
   "scripts": {
-    "dev": "npm run dis:dev && webpack-dev-server --inline --hot --config build/webpack.dev.config.js",
-    "dis:pro": "webpack --config build/webpack.config.js",
-    "dis:dev": "webpack --config build/webpack.dev.config.js",
+    "dev": "tsc -p tsconfig.json --watch && webpack-dev-server --inline --hot --config build/webpack.dev.config.js",
+    "dis:pro": "tsc -p tsconfig.json && webpack --config build/webpack.config.js",
+    "dis:dev": "tsc -p tsconfig.json && webpack --config build/webpack.dev.config.js",
     "dis": "npm run dis:dev && npm run dis:pro"
   },
   "keywords": [],
