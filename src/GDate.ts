@@ -17,7 +17,7 @@ class GDate {
     this.minute = time.getMinutes()
     this.second = time.getSeconds()
   }
-  getZh(lang: string,date?: any): string {
+  getZh(date?: any,lang?: string): string {
     this.setTimes(date)
     switch(lang) {
       case('yyyy-mm-dd hh:mm:ss'):
@@ -54,7 +54,7 @@ class GDate {
       return `${this.year}年${this.month}月${this.day}日 ${this.hour}时${this.minute}分${this.second}秒`
     }
   }
-  getEn(lang: string,date?: any): string {
+  getEn(date?: any,lang?: string): string {
     this.setTimes(date)
     switch(lang) {
       case('yyyy-mm-dd hh:mm:ss'):
@@ -90,6 +90,26 @@ class GDate {
       default:
       return `${this.year}-${this.month}-${this.day} ${this.hour}:${this.minute}:${this.second}`
     }
+  }
+  getInterval(s: any, n?: any, lang?: string) {
+    try {
+      if(s) {
+        let start: any = s ? new Date(s) : new Date()
+        let end: any = n ? new Date(n) : new Date()
+        let startNumber: number = start.getTime()
+        let endNumber: number = end.getTime()
+        let interval: number = Math.abs(startNumber - endNumber)
+        return this.getIntervalZh(24*60*60*1000)
+      }else {
+        throw 'start time is must!'
+      }
+    }
+    catch(err) {
+      return err
+    }
+  }
+  private getIntervalZh(interval:number):string {
+    return '123'
   }
 }
 export default new GDate()

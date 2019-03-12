@@ -24,7 +24,7 @@ class UrlMatch {
         return matchResult[1]
       }else {
         throw 'No match'
-    }
+      }
     }
     catch(err) {
       return err
