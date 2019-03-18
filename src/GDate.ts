@@ -92,6 +92,10 @@ class GDate {
     }
   }
   getInterval(s: any, n?: any, lang?: string) {
+    if (arguments.length === 2) {
+      lang = arguments[1]
+      n = new Date()
+    }
     try {
       if(s) {
         let start: any = s ? new Date(s) : new Date()
@@ -99,7 +103,74 @@ class GDate {
         let startNumber: number = start.getTime()
         let endNumber: number = end.getTime()
         let interval: number = Math.abs(startNumber - endNumber)
-        return this.getIntervalZh(24*60*60*1000)
+        let time = {
+          s: 0,
+          m: 0,
+          h: 0,
+          d: 0,
+          y: 0,
+        }
+        if (interval > 0 && interval < 60 * 1000) {
+          time.s = Math.floor(interval / 1000)
+          switch (lang) {
+            case ('zH'):
+              return  `${time.s}秒`
+            case ('eN'):
+              return time.s
+            default:
+              return time
+          }
+        } else if ( interval >= 60 * 1000 && interval < 60 * 60 * 1000){
+          time.s = Math.floor(interval % (60 * 1000) / 1000)
+          time.m = Math.floor(interval / (60 * 1000))
+          switch (lang) {
+            case ('zH'):
+              return `${time.m}分${time.s}秒`
+            case ('eN'):
+              return `${time.m}:${time.s}`
+            default:
+              return time
+          }
+        } else if (interval >= 60 * 60 * 100 && interval < 24 * 60 * 60 * 1000 ) {
+          time.s = Math.floor(interval % (60 * 1000) / 1000)
+          time.m = Math.floor(interval % (60 * 60 * 1000) / (60 * 1000))
+          time.h = Math.floor(interval / (60 * 60 * 1000))
+          switch (lang) {
+            case ('zH'):
+              return `${time.h}时${time.m}分${time.s}秒`
+            case ('eN'):
+              return `${time.h}:${time.m}:${time.s}`
+            default:
+              return time
+          }
+        } else if (interval >= 24 * 60 * 60 * 1000 && interval < 365 * 24 * 60 * 60 * 1000) {
+          time.s = Math.floor(interval % (60 * 1000) / 1000)
+          time.m = Math.floor(interval % (60 * 60 * 1000) / (60 * 1000))
+          time.h = Math.floor(interval % (24 * 60 * 60 * 1000) / (60 * 60 * 1000))
+          time.d = Math.floor(interval / (24 * 60 * 60 * 1000))
+          switch (lang) {
+            case ('zH'):
+              return `${time.d}天${time.h}时${time.m}分${time.s}秒`
+            case ('eN'):
+              return `${time.d} ${time.h}:${time.m}:${time.s}`
+            default:
+              return time
+          }
+        } else if (interval >= 365 * 24 * 60 * 60 * 1000) {
+          time.s = Math.floor(interval % (60 * 1000) / 1000)
+          time.m = Math.floor(interval % (60 * 60 * 1000) / (60 * 1000))
+          time.h = Math.floor(interval % (24 * 60 * 60 * 1000) / (60 * 60 * 1000))
+          time.d = Math.floor(interval % (365 * 24 * 60 * 60 * 1000) / (24 * 60 * 60 * 1000))
+          time.y = Math.floor(interval / (365 * 24 * 60 * 60 * 1000))
+          switch (lang) {
+            case ('zH'):
+              return `${time.y}年${time.d}天${time.h}时${time.m}分${time.s}秒`
+            case ('eN'):
+              return `${time.y}-${time.d} ${time.h}:${time.m}:${time.s}`
+            default:
+              return time
+          }
+        }
       }else {
         throw 'start time is must!'
       }
@@ -108,8 +179,28 @@ class GDate {
       return err
     }
   }
-  private getIntervalZh(interval:number):string {
-    return '123'
+  getDaysLater(day: number,lang?: string) {
+    try {
+      if (day) {
+        if (typeof day === 'number') {
+          switch (lang) {
+            case ('zH'):
+              return  this.getZh(Date.now() + 3600 * 1000 * 24 * day, 'yyyy-MM-dd')
+            case ('eN'):
+              return  this.getEn(Date.now() + 3600 * 1000 * 24 * day, 'yyyy-MM-dd')
+            default:
+              return  this.getZh(Date.now() + 3600 * 1000 * 24 * day, 'yyyy-mm-dd')
+          }
+        } else {
+          throw 'day must be a number!'
+        }
+      } else {
+        throw 'day is must!'
+      }
+    }
+    catch (err) {
+      throw err
+    }
   }
 }
 export default new GDate()

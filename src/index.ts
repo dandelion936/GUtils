@@ -1,4 +1,5 @@
 import UrlMatch from "./UrlMatch";
 import UrlParams from "./UrlParams";
 import GDate from "./GDate"
-export { UrlMatch, UrlParams, GDate }
+import Device from "./Device"
+export { UrlMatch, UrlParams, GDate, Device }

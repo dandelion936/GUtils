@@ -1,3 +1,4 @@
-// console.log(Gutils.GDate.getZh(1552319999000,'yyyy-mm-dd'),Gutils.GDate.getEn(1552319999000,'yyyy-mm-dd'))
-Gutils.UrlParams.getParam()
-console.log(Gutils.GDate.getInterval(1552319999000))
+// console.log(Gutils)
+Gutils.Device.getIP()
+// console.log(Gutils.GDate.getInterval('1993-06-24','zH'))
+// console.log(Gutils.GDate.getDaysLater(-1))

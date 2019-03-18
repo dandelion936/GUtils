@@ -45,7 +45,7 @@ class UrlMatch {
       }
     }
     catch(err) {
-        return err
+      return err
     }
   }
 }
